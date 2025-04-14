@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Gift</title>
+  <style>
+    body { font-family: Arial; text-align: center; background-color: #f4f4f4; padding: 50px; }
+    .gift-box { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px #ccc; display: inline-block; }
+    img { width: 200px; border-radius: 10px; }
+    .gift-name { font-size: 24px; color: #333; margin-top: 15px; margin-bottom: 15px; }
+    .claim-btn {
+      margin-top: 200px;
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gift-box">
+    <h2>🎁 WoW you won</h2>
+    <div id="giftDetails"></div>
+  </div>
+
+  <script>
+    const gifts = {
+      "AB123X": { name: "Smart Watch", image: "C:/Users/prajwalbs/Desktop/website/new_betting_app/phots/watch.jpeg" },
+      "XY789Z": { name: "Wireless Headphones", image: "C:/Users/prajwalbs/Desktop/website/new_betting_app/phots/buds.jpeg" },
+      "SPK456": { name: "Bluetooth Speaker", image: "C:/Users/prajwalbs/Desktop/website/new_betting_app/phots/speaker.jpeg" },
+      "XYZ123": { name: "Movie tickets", image: "C:/Users/prajwalbs/Desktop/website/new_betting_app/phots/movie.jpeg" },
+      "MNO123": { name: "IPL tickets", image: "C:/Users/prajwalbs/Desktop/website/new_betting_app/phots/ipl.jpeg" },
+      // "ABC123": { name: "Portable Fan", image: "https://i.imgur.com/YLNzslb.jpg" },
+      // "pqr123": { name: "Mini Tripod", image: "https://i.imgur.com/rHQ6rVs.jpg" }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const gift = gifts[code];
+
+    if (gift) {
+      document.getElementById("giftDetails").innerHTML = `
+        <img src="${gift.image}" alt="${gift.name}">
+        <div class="gift-name">${gift.name}</div>
+        <a class="claim-btn" href="claim.html?code=${code}">🎯 Claim this Gift</a>
+      `;
+    } else {
+      document.getElementById("giftDetails").innerHTML = `<p>❌ Invalid or Unknown Gift Code.</p>`;
+    }
+  </script>
+
+</body>
+</html>
