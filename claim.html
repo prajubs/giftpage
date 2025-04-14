@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Claim Gift</title>
+  <style>
+    body { font-family: Arial; text-align: center; background-color: #eef2f3; padding: 50px; }
+    .form-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+      width: 400px;
+      margin: auto;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .gift-code { margin-bottom: 15px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>🎁 Claim Your Gift</h2>
+    <div class="gift-code" id="giftCodeInfo"></div>
+
+    <form onsubmit="submitForm(event)">
+      <input type="text" id="name" placeholder="Your Name" required><br>
+      <input type="tel" id="phone" placeholder="Contact Number" required><br>
+      <textarea id="address" placeholder="Delivery Address" rows="4" required></textarea><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      document.getElementById("giftCodeInfo").textContent = `🎁 Gift Code: ${code}`;
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+
+      alert(`✅ Claim Submitted!\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nGift Code: ${code}`);
+    }
+  </script>
+
+</body>
+</html>
